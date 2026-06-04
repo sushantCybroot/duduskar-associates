@@ -3,23 +3,28 @@ import "../src/styles/globals.css";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} - Premium Legal Services in Thane`,
-  description: SITE_DESCRIPTION,
+  title: "Best Lawyer in Thane & Mumbai | Civil Litigation | MACT | Property Law | Duduskar & Associates",
+  description: "Duduskar & Associates - 35+ years of trusted legal services in Thane, Mumbai. Expert Civil Litigation, Motor Accident Claims (MACT), Property Matters, Injunction, Legal Advisory. Top rated law firm in Maharashtra.",
   keywords: [
-    "law firm",
-    "civil litigation",
-    "lawyer in Thane",
-    "legal services",
-    "motor accident claims",
-    "property lawyer",
+    "best lawyer in thane",
+    "law firm thane",
+    "civil litigation lawyer thane",
+    "motor accident claims thane",
+    "property lawyer thane",
+    "MACT lawyer",
+    "injunction lawyer",
+    "legal consultation thane",
+    "best lawyer in mumbai",
+    "lawyer near me",
+    "advocate thane",
   ],
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: SITE_URL,
-    title: `${SITE_NAME} - Premium Legal Services in Thane`,
-    description: SITE_DESCRIPTION,
+    title: "Duduskar & Associates - Best Lawyer in Thane & Mumbai",
+    description: "35+ years of trusted legal services. Expert in Civil Litigation, MACT, Property Law, and Legal Advisory.",
     siteName: SITE_NAME,
     images: [
       {
@@ -32,15 +37,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} - Premium Legal Services`,
-    description: SITE_DESCRIPTION,
+    title: "Duduskar & Associates - Best Lawyer in Thane",
+    description: "Expert legal services in Civil Litigation, Motor Accident Claims, Property Law, and more.",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
   icons: {
     icon: "/favicon.ico",
+  },
+  alternates: {
+    canonical: SITE_URL,
   },
 };
 

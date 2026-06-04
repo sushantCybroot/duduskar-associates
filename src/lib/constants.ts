@@ -1,7 +1,7 @@
 // Site constants
 export const SITE_NAME = "Duduskar & Associates";
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-export const SITE_DESCRIPTION = "35+ Years of Trusted Legal Practice & Advisory Services";
+export const SITE_DESCRIPTION = "Best Lawyer in Thane & Mumbai - 35+ Years of Trusted Legal Services. Expert Civil Litigation, Motor Accident Claims (MACT), Property & Real Estate Law";
 
 // Firm information
 export const FIRM = {
