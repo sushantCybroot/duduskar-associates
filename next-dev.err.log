@@ -1,0 +1,30 @@
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[browser] Uncaught Error: Invalid src prop (https://www.upes.ac.in/blog/law/types-of-law-degree-specializations) on `next/image`, hostname "www.upes.ac.in" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at Array.map (<anonymous>)
+    at BlogDetailPage (app\blog\[slug]\page.tsx:70:15)
+  68 |           {blog.featuredImage && (
+  69 |             <div className="relative mx-auto mt-[-3rem] aspect-[16/8] max-w-5xl overflow-h...
+> 70 |               <Image
+     |               ^
+  71 |                 src={blog.featuredImage}
+  72 |                 alt={blog.title}
+  73 |                 fill
+[browser] Uncaught Error: Invalid src prop (https://www.upes.ac.in/blog/law/types-of-law-degree-specializations) on `next/image`, hostname "www.upes.ac.in" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at Array.map (<anonymous>)
+    at <anonymous> (app\blog\page.tsx:99:21)
+    at Array.map (<anonymous>:1:18)
+    at BlogPage (app\blog\page.tsx:95:28)
+   97 |                 <div className="relative aspect-[16/9] bg-dark-200">
+   98 |                   {blog.featuredImage && (
+>  99 |                     <Image
+      |                     ^
+  100 |                       src={blog.featuredImage}
+  101 |                       alt={blog.title}
+  102 |                       fill
+[browser] Image with src "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
