@@ -2,7 +2,7 @@ import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BlogImage from "@/components/BlogImage";
-import dbConnect, { isProduction } from "@/lib/db";
+import dbConnect from "@/lib/db";
 import { Blog } from "@/lib/models";
 import { serializeBlog } from "@/lib/blogData";
 import { getDevBlogs } from "@/lib/devBlogStore";
@@ -20,10 +20,7 @@ async function getBlogs(): Promise<BlogPost[]> {
     const docs = await Blog.find({ published: true }).sort({ createdAt: -1 }).lean();
     return docs.map(serializeBlog);
   } catch {
-    if (isProduction) {
-      throw new Error("MongoDB is required for production blog pages.");
-    }
-
+    // Fall back to dev blogs if MongoDB is not available or not configured
     return getDevBlogs().filter((blog) => blog.published);
   }
 }

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BlogImage from "@/components/BlogImage";
-import dbConnect, { isProduction } from "@/lib/db";
+import dbConnect from "@/lib/db";
 import { Blog } from "@/lib/models";
 import { serializeBlog } from "@/lib/blogData";
 import { getDevBlog } from "@/lib/devBlogStore";
@@ -17,10 +17,7 @@ async function getBlog(slug: string): Promise<BlogPost | null> {
     const doc = await Blog.findOne({ slug, published: true }).lean();
     return doc ? serializeBlog(doc) : null;
   } catch {
-    if (isProduction) {
-      throw new Error("MongoDB is required for production blog pages.");
-    }
-
+    // Fall back to dev blogs if MongoDB is not available or not configured
     const blog = getDevBlog(slug);
     return blog?.published ? blog : null;
   }
