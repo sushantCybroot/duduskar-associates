@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import AdminBlogEditor from "@/components/AdminBlogEditor";
 import { getSession } from "@/lib/auth";
-import dbConnect, { isProduction } from "@/lib/db";
+import dbConnect from "@/lib/db";
 import { Blog } from "@/lib/models";
 import { serializeBlog } from "@/lib/blogData";
 import { getDevBlog } from "@/lib/devBlogStore";
@@ -23,10 +23,7 @@ export default async function EditBlogPage({ params }: { params: Promise<{ id: s
     const doc = await Blog.findById(id).lean();
     blog = doc ? serializeBlog(doc) : null;
   } catch {
-    if (isProduction) {
-      throw new Error("MongoDB is required for production blog editing.");
-    }
-
+    // Fall back to dev blogs if MongoDB is not available
     blog = getDevBlog(id);
   }
 

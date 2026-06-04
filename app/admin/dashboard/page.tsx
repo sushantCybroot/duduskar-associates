@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
 import { Blog } from "@/lib/models";
-import dbConnect, { isProduction } from "@/lib/db";
+import dbConnect from "@/lib/db";
 import { serializeBlog } from "@/lib/blogData";
 import { getDevBlogs } from "@/lib/devBlogStore";
 import { BlogPost } from "@/types";
@@ -15,10 +15,7 @@ async function getBlogs(): Promise<{ blogs: BlogPost[]; fallback: boolean }> {
     const docs = await Blog.find({}).sort({ createdAt: -1 }).lean();
     return { blogs: docs.map(serializeBlog), fallback: false };
   } catch {
-    if (isProduction) {
-      throw new Error("MongoDB is required for the production admin dashboard.");
-    }
-
+    // Fall back to dev blogs if MongoDB is not available
     return { blogs: getDevBlogs(), fallback: true };
   }
 }
