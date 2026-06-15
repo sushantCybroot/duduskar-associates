@@ -198,6 +198,14 @@ export const TEAM_MEMBERS = [
     bio: "Committed to delivering professional legal services with a client-focused approach and attention to detail.",
     image: "/law-image/swati-teli.jpg",
   },
+  {
+    id: "kunal-hajare",
+    name: "Adv. Kunal Hajare",
+    title: "Advocate",
+    designation: "Associate Advocate",
+    bio: "Focused on property and civil matters with a strong background in client advocacy and dispute resolution.",
+    image: "/law-image/Kunal-Hajare.jpeg",
+  },
 ];
 
 // Why choose us points
