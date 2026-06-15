@@ -269,7 +269,7 @@ export const FAQ_ITEMS = [
   {
     question: "How experienced is your team with MACT claims?",
     answer:
-      "Motor Accident Claims are one of our specialties. We have successfully handled over 500+ MACT cases, securing substantial compensation for clients.",
+      "Motor Accident Claims are one of our specialties. We have successfully handled over 5000+ MACT cases, securing substantial compensation for clients.",
   },
   {
     question: "Do you handle international dispute resolution?",
