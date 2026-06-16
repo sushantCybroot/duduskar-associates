@@ -175,8 +175,8 @@ export const TEAM_MEMBERS = [
     image: "/law-image/gaurav-duduskar.jpg",
   },
   {
-    id: "subramanium",
-    name: "Adv. Subramanium",
+    id: "as-vaidhyanatan",
+    name: "Adv. As Vaidhyanatan",
     title: "Senior Advocate",
     designation: "Legal Consultant",
     bio: "Experienced legal professional providing practical legal solutions and comprehensive representation across a variety of legal matters.",
