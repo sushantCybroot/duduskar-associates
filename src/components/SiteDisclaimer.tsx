@@ -1,16 +1,24 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FIRM } from "@/lib/constants";
 
-const DISCLAIMER_KEY = "duduskar-disclaimer-accepted";
+const DISCLAIMER_KEY = "duduskar-public-disclaimer-accepted";
 
 export default function SiteDisclaimer() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    if (pathname.startsWith("/admin")) {
+      setIsOpen(false);
+      setIsReady(true);
+      return;
+    }
+
     const searchParams = new URLSearchParams(window.location.search);
     const shouldForceShow = searchParams.get("disclaimer") === "1";
     const shouldReset = searchParams.get("resetDisclaimer") === "1";
@@ -22,7 +30,7 @@ export default function SiteDisclaimer() {
     const hasAccepted = window.localStorage.getItem(DISCLAIMER_KEY) === "true";
     setIsOpen(shouldForceShow || !hasAccepted);
     setIsReady(true);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (!isReady) {
