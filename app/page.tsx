@@ -15,7 +15,7 @@ import { Metadata } from "next";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Best Lawyer in Thane & Mumbai | Civil Litigation | MACT Claims | Duduskar & Associates",
+  title: "Duduskar & Associates | Civil Litigation | MACT Claims",
   description: "Duduskar & Associates - 35+ years of trusted legal services. Expert in Civil Litigation, Motor Accident Claims (MACT), Property Law, Injunction Matters, and Legal Advisory in Thane and Mumbai.",
   keywords: [
     "best lawyer in thane",
