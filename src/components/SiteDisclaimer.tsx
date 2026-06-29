@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import { FIRM } from "@/lib/constants";
 
 const DISCLAIMER_KEY = "duduskar-public-disclaimer-accepted";
+const LEGACY_DISCLAIMER_KEYS = [
+  "duduskar-disclaimer-accepted",
+  "duduskar-public-disclaimer-accepted",
+];
 
 export default function SiteDisclaimer() {
   const pathname = usePathname();
@@ -24,10 +28,14 @@ export default function SiteDisclaimer() {
     const shouldReset = searchParams.get("resetDisclaimer") === "1";
 
     if (shouldReset) {
-      window.localStorage.removeItem(DISCLAIMER_KEY);
+      LEGACY_DISCLAIMER_KEYS.forEach((key) => {
+        window.localStorage.removeItem(key);
+        window.sessionStorage.removeItem(key);
+      });
     }
 
-    const hasAccepted = window.localStorage.getItem(DISCLAIMER_KEY) === "true";
+    const hasAccepted =
+      window.sessionStorage.getItem(DISCLAIMER_KEY) === "true";
     setIsOpen(shouldForceShow || !hasAccepted);
     setIsReady(true);
   }, [pathname]);
@@ -45,7 +53,7 @@ export default function SiteDisclaimer() {
   }, [isOpen, isReady]);
 
   const handleAgree = () => {
-    window.localStorage.setItem(DISCLAIMER_KEY, "true");
+    window.sessionStorage.setItem(DISCLAIMER_KEY, "true");
     setIsOpen(false);
   };
 
