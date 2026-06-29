@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../src/styles/globals.css";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
+import SiteDisclaimer from "@/components/SiteDisclaimer";
 
 export const metadata: Metadata = {
   title: "Best Lawyer in Thane & Mumbai | Civil Litigation | MACT | Property Law | Duduskar & Associates",
@@ -73,6 +74,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/law-image/favicon.jpg" />
       </head>
       <body className="bg-white text-dark-950 antialiased">
+        <SiteDisclaimer />
         {children}
       </body>
     </html>

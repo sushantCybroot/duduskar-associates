@@ -176,11 +176,19 @@ export const TEAM_MEMBERS = [
   },
   {
     id: "as-vaidhyanatan",
-    name: "Adv. As Vaidhyanatan",
+    name: "Adv. A.S. Vaidhyanatan",
     title: "Senior Advocate",
     designation: "Legal Consultant",
     bio: "Experienced legal professional providing practical legal solutions and comprehensive representation across a variety of legal matters.",
     image: "/law-image/subramanium.jpg",
+  },
+  {
+    id: "kunal-hajare",
+    name: "Adv. Kunal Hajare",
+    title: "Advocate",
+    designation: "Associate Advocate",
+    bio: "Focused on property and civil matters with a strong background in client advocacy and dispute resolution.",
+    image: "/law-image/Kunal-Hajare.jpeg",
   },
   {
     id: "shivaji-solapure",
@@ -197,14 +205,6 @@ export const TEAM_MEMBERS = [
     designation: "Associate Advocate",
     bio: "Committed to delivering professional legal services with a client-focused approach and attention to detail.",
     image: "/law-image/swati-teli.jpg",
-  },
-  {
-    id: "kunal-hajare",
-    name: "Adv. Kunal Hajare",
-    title: "Advocate",
-    designation: "Associate Advocate",
-    bio: "Focused on property and civil matters with a strong background in client advocacy and dispute resolution.",
-    image: "/law-image/Kunal-Hajare.jpeg",
   },
 ];
 

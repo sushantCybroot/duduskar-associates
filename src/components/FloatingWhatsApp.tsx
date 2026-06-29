@@ -16,7 +16,7 @@ export default function FloatingWhatsApp() {
       rel="noopener noreferrer"
       whileHover={{ scale: 1.1, rotate: 10 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-8 right-8 z-40 flex items-center justify-center w-14 h-14 rounded-full bg-transparent text-white shadow-lg transition-all duration-300 group"
+      className="fixed bottom-8 right-8 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 group"
       aria-label="Chat on WhatsApp"
     >
       <Image
@@ -24,9 +24,9 @@ export default function FloatingWhatsApp() {
         alt="WhatsApp"
         width={56}
         height={56}
-        className="object-contain"
+        unoptimized
+        className="rounded-full object-contain"
       />
-      
     </motion.a>
   );
 }
