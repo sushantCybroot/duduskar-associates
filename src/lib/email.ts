@@ -1,18 +1,44 @@
 import nodemailer, { type Transporter } from "nodemailer";
 
+const SMTP_HOST = process.env.SMTP_HOST || "smtp.gmail.com";
+const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
+const SMTP_SECURE = process.env.SMTP_SECURE === "true";
+const SMTP_USER = process.env.SMTP_USER || process.env.GMAIL_EMAIL;
+const SMTP_PASS = process.env.SMTP_PASS || process.env.GMAIL_PASSWORD;
+
+const PLACEHOLDER_VALUES = new Set([
+  "your-email@gmail.com",
+  "your-app-specific-password",
+  "your-smtp-username",
+  "your-smtp-password",
+]);
+
 const SMTP_CONFIG = {
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  secure: SMTP_SECURE,
   auth: {
-    user: process.env.GMAIL_EMAIL,
-    pass: process.env.GMAIL_PASSWORD,
+    user: SMTP_USER,
+    pass: SMTP_PASS,
   },
 };
 
 let transporter: Transporter | null = null;
 
+export const isEmailConfigured = () =>
+  Boolean(
+    SMTP_USER &&
+      SMTP_PASS &&
+      !PLACEHOLDER_VALUES.has(SMTP_USER) &&
+      !PLACEHOLDER_VALUES.has(SMTP_PASS)
+  );
+
 export const getTransporter = async () => {
+  if (!isEmailConfigured()) {
+    console.warn("Email service is not configured");
+    return null;
+  }
+
   if (transporter) {
     return transporter;
   }
@@ -48,7 +74,7 @@ export const sendEmail = async (options: EmailOptions): Promise<boolean> => {
     }
 
     await transporter.sendMail({
-      from: `"Duduskar & Associates" <${process.env.GMAIL_EMAIL}>`,
+      from: `"Duduskar & Associates" <${SMTP_USER}>`,
       ...options,
     });
 

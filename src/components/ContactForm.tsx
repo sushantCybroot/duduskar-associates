@@ -59,13 +59,16 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to submit form");
+        throw new Error(result.message || "Failed to submit form");
       }
 
       setSubmitStatus({
         type: "success",
         message:
+          result.message ||
           "Thank you for contacting us! We will respond within 24 hours.",
       });
 
@@ -80,11 +83,13 @@ export default function ContactForm() {
       setTimeout(() => {
         setSubmitStatus({ type: null, message: "" });
       }, 5000);
-    } catch {
+    } catch (error) {
       setSubmitStatus({
         type: "error",
         message:
-          "Failed to submit form. Please try again or contact us directly.",
+          error instanceof Error
+            ? error.message
+            : "Failed to submit form. Please try again or contact us directly.",
       });
     } finally {
       setIsSubmitting(false);

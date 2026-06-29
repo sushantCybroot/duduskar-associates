@@ -170,7 +170,7 @@ export default function Team() {
             <p className="text-gray-700 mb-6 font-light">
               Need legal assistance from our expert team?
             </p>
-            <a href="#contact">
+            <a href="/#contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

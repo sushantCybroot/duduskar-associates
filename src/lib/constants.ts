@@ -17,11 +17,11 @@ export const FIRM = {
 // Navigation links
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Team", href: "#team" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Team", href: "/#team" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 // Practice areas

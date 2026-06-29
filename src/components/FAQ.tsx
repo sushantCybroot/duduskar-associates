@@ -105,7 +105,7 @@ export default function FAQ() {
             <p className="text-gray-600 mb-6">
               Didn&apos;t find the answer you&apos;re looking for?
             </p>
-            <a href="#contact">
+            <a href="/#contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

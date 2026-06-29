@@ -81,7 +81,7 @@ export default function Navigation() {
 
         {/* CTA Button */}
         <Link
-          href="#contact"
+          href="/#contact"
           className="hidden sm:block px-6 py-2 bg-gold-500 text-dark-950 rounded-lg font-semibold hover:bg-gold-600 hover:shadow-glow transition-all duration-300 transform hover:scale-105"
           onClick={handleNavClick}
         >
@@ -134,7 +134,7 @@ export default function Navigation() {
               </Link>
             ))}
             <Link
-              href="#contact"
+              href="/#contact"
               className="block w-full text-center px-4 py-2 bg-gold-500 text-dark-950 rounded-lg font-semibold hover:bg-gold-600 transition-all duration-300 mt-4"
               onClick={handleNavClick}
             >

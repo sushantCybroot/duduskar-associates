@@ -107,7 +107,7 @@ export default function Footer() {
                 {servicesCol1.map((area) => (
                   <Link
                     key={area.id}
-                    href="#services"
+                    href="/#services"
                     className="text-gray-400 hover:text-gold-500 transition-colors text-sm leading-6"
                   >
                     {area.title}
@@ -116,7 +116,7 @@ export default function Footer() {
                 {servicesCol2.map((area) => (
                   <Link
                     key={area.id}
-                    href="#services"
+                    href="/#services"
                     className="text-gray-400 hover:text-gold-500 transition-colors text-sm leading-6"
                   >
                     {area.title}

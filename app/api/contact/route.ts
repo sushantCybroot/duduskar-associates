@@ -31,7 +31,20 @@ export async function POST(request: NextRequest) {
       message: sanitizeInput(normalizeInput(body.message)),
     };
 
-    // Send email notification to admin
+    let inquiryId: string | undefined;
+    let inquirySaved = false;
+
+    try {
+      await dbConnect();
+
+      const inquiry = new ContactInquiry(sanitizedData);
+      await inquiry.save();
+      inquiryId = inquiry._id.toString();
+      inquirySaved = true;
+    } catch (error) {
+      console.error("Contact inquiry database save failed:", error);
+    }
+
     const emailTemplate = contactNotificationTemplate(
       sanitizedData.name,
       sanitizedData.email,
@@ -47,44 +60,47 @@ export async function POST(request: NextRequest) {
       replyTo: sanitizedData.email,
     });
 
-    if (!emailSent) {
+    if (!emailSent && !inquirySaved) {
       return NextResponse.json(
         {
           success: false,
           message:
-            "Unable to send inquiry email. Please call or email us directly.",
+            "Unable to submit your inquiry right now. Please call or email us directly.",
         },
         { status: 502 }
       );
     }
 
-    let inquiryId: string | undefined;
+    if (inquirySaved && !emailSent) {
+      return NextResponse.json(
+        {
+          success: true,
+          message:
+            "Your inquiry has been submitted successfully. Email notifications are temporarily unavailable, but we have received your message.",
+          data: { id: inquiryId },
+        },
+        { status: 201 }
+      );
+    }
 
-    try {
-      await dbConnect();
+    if (!inquirySaved && emailSent) {
+      const statusCode = isProduction ? 202 : 201;
 
-      const inquiry = new ContactInquiry(sanitizedData);
-      await inquiry.save();
-      inquiryId = inquiry._id.toString();
-    } catch (error) {
-      console.error("Contact inquiry database save failed:", error);
-
-      if (isProduction) {
-        return NextResponse.json(
-          {
-            success: false,
-            message:
-              "Inquiry email was sent, but database save failed. Please check MongoDB configuration.",
-          },
-          { status: 202 }
-        );
-      }
+      return NextResponse.json(
+        {
+          success: true,
+          message:
+            "Your inquiry email was sent successfully. We could not save it to the database, but our team has still been notified.",
+          data: { id: inquiryId },
+        },
+        { status: statusCode }
+      );
     }
 
     return NextResponse.json(
       {
         success: true,
-        message: "Inquiry emailed successfully",
+        message: "Your inquiry has been submitted successfully.",
         data: { id: inquiryId },
       },
       { status: 201 }

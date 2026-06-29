@@ -120,7 +120,7 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <motion.div variants={itemVariants} className="flex flex-col gap-3 pt-2 sm:flex-row lg:justify-start">
-            <Link href="#contact">
+            <Link href="/#contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -129,7 +129,7 @@ export default function Hero() {
                 Consult Now
               </motion.button>
             </Link>
-            <Link href="#services">
+            <Link href="/#services">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
