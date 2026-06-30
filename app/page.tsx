@@ -15,18 +15,38 @@ import { Metadata } from "next";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Duduskar & Associates | Civil Litigation | MACT Claims",
-  description: "Duduskar & Associates - 35+ years of trusted legal services. Expert in Civil Litigation, Motor Accident Claims (MACT), Property Law, Injunction Matters, and Legal Advisory in Thane and Mumbai.",
+  title: "Home",
+  description:
+    "Duduskar & Associates offers trusted legal services in Thane for civil litigation, motor accident claims (MACT), property law, injunction matters, and legal advisory.",
   keywords: [
+    "duduskar and associates",
+    "duduskar & associates",
     "best lawyer in thane",
     "law firm thane",
     "civil litigation",
     "motor accident claims",
     "MACT lawyer",
     "property lawyer",
-    "best lawyer in mumbai",
     "legal services thane"
-  ]
+  ],
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    title: SITE_NAME,
+    description:
+      "Trusted legal services in Thane for civil litigation, MACT claims, property law, and legal advisory.",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description:
+      "Trusted legal services in Thane for civil litigation, MACT claims, property law, and legal advisory.",
+  },
 };
 
 export default function Home() {
@@ -61,6 +81,25 @@ export default function Home() {
     ]
   };
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    alternateName: "Duduskar and Associates",
+    url: SITE_URL,
+    email: FIRM.email,
+    telephone: FIRM.phone,
+    logo: `${SITE_URL}/law-image/favicon.jpg`,
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    alternateName: "Duduskar and Associates",
+    url: SITE_URL,
+  };
+
   // Schema markup for Professional Service
   const professionalServiceSchema = {
     "@context": "https://schema.org",
@@ -93,6 +132,16 @@ export default function Home() {
         id="professional-service-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
+      />
+      <Script
+        id="organization-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <Script
+        id="website-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <ScrollProgress />
       <Navigation />

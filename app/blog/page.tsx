@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -6,12 +7,23 @@ import dbConnect from "@/lib/db";
 import { Blog } from "@/lib/models";
 import { serializeBlog } from "@/lib/blogData";
 import { getDevBlogs } from "@/lib/devBlogStore";
-import { BLOG_CATEGORIES, SITE_NAME } from "@/lib/constants";
+import { BLOG_CATEGORIES, SITE_NAME, SITE_URL } from "@/lib/constants";
 import { BlogPost } from "@/types";
 
-export const metadata = {
-  title: `Legal Insights | ${SITE_NAME}`,
-  description: "Articles and updates from Duduskar & Associates on litigation, property law, arbitration, and legal strategy.",
+export const metadata: Metadata = {
+  title: "Legal Insights",
+  description:
+    "Articles and updates from Duduskar & Associates on litigation, property law, arbitration, and legal strategy.",
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
+  openGraph: {
+    title: `Legal Insights | ${SITE_NAME}`,
+    description:
+      "Articles and updates from Duduskar & Associates on litigation, property law, arbitration, and legal strategy.",
+    url: `${SITE_URL}/blog`,
+    type: "website",
+  },
 };
 
 async function getBlogs(): Promise<BlogPost[]> {

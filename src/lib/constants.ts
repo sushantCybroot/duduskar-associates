@@ -1,7 +1,9 @@
 // Site constants
 export const SITE_NAME = "Duduskar & Associates";
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-export const SITE_DESCRIPTION = "Best Lawyer in Thane & Mumbai - 35+ Years of Trusted Legal Services. Expert Civil Litigation, Motor Accident Claims (MACT), Property & Real Estate Law";
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://duduskarandassociates.in";
+export const SITE_DESCRIPTION =
+  "Duduskar & Associates is a Thane-based law firm with 35+ years of trusted legal services in civil litigation, motor accident claims (MACT), property law, injunction matters, and legal advisory.";
 
 // Firm information
 export const FIRM = {

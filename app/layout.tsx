@@ -4,10 +4,16 @@ import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 import SiteDisclaimer from "@/components/SiteDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Duduskar & Associates | Civil Litigation | MACT | Property Law",
-  description: "Duduskar & Associates - 35+ years of trusted legal services in Thane, Mumbai. Expert Civil Litigation, Motor Accident Claims (MACT), Property Matters, Injunction, Legal Advisory. Top rated law firm in Maharashtra.",
+  title: {
+    default: "Duduskar & Associates | Civil Litigation | MACT | Property Law",
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
-    "best lawyer in thane",
+    "duduskar and associates",
+    "duduskar & associates",
+    "duduskar associates thane",
     "law firm thane",
     "civil litigation lawyer thane",
     "motor accident claims thane",
@@ -24,8 +30,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: SITE_URL,
-    title: "Duduskar & Associates",
-    description: "35+ years of trusted legal services. Expert in Civil Litigation, MACT, Property Law, and Legal Advisory.",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
     siteName: SITE_NAME,
     images: [
       {
@@ -38,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Duduskar & Associates",
-    description: "Expert legal services in Civil Litigation, Motor Accident Claims, Property Law, and more.",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -56,6 +62,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
+  category: "Legal Services",
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
 };
 
 export default function RootLayout({

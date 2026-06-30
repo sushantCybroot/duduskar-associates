@@ -8,7 +8,7 @@ import dbConnect from "@/lib/db";
 import { Blog } from "@/lib/models";
 import { serializeBlog } from "@/lib/blogData";
 import { getDevBlog } from "@/lib/devBlogStore";
-import { SITE_NAME } from "@/lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { BlogPost } from "@/types";
 
 async function getBlog(slug: string): Promise<BlogPost | null> {
@@ -33,12 +33,24 @@ export async function generateMetadata({
   if (!blog) return { title: `Article Not Found | ${SITE_NAME}` };
 
   return {
-    title: `${blog.title} | ${SITE_NAME}`,
+    title: blog.title,
     description: blog.seo.metaDescription || blog.excerpt,
+    alternates: {
+      canonical: `${SITE_URL}/blog/${blog.slug}`,
+    },
     openGraph: {
       title: blog.title,
       description: blog.seo.metaDescription || blog.excerpt,
+      url: `${SITE_URL}/blog/${blog.slug}`,
+      siteName: SITE_NAME,
+      type: "article",
       images: blog.seo.ogImage ? [{ url: blog.seo.ogImage }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: blog.seo.metaDescription || blog.excerpt,
+      images: blog.seo.ogImage ? [blog.seo.ogImage] : undefined,
     },
   };
 }
