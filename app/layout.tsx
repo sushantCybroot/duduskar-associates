@@ -56,8 +56,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/law-image/favicon.jpg",
-    apple: "/law-image/favicon.jpg",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   alternates: {
     canonical: SITE_URL,
@@ -75,12 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0a0a0a" />
-        <link rel="icon" type="image/jpeg" sizes="32x32" href="/law-image/favicon.jpg" />
-        <link rel="shortcut icon" href="/law-image/favicon.jpg" />
-        <link rel="apple-touch-icon" href="/law-image/favicon.jpg" />
       </head>
       <body className="bg-white text-dark-950 antialiased">
         <SiteDisclaimer />
