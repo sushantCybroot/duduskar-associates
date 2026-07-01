@@ -9,6 +9,31 @@ type SitemapBlog = {
   updatedAt?: Date;
 };
 
+const SITEMAP_DB_TIMEOUT_MS = 2500;
+
+async function fetchPublishedBlogs(): Promise<SitemapBlog[]> {
+  if (!isMongoConfigured()) {
+    return [];
+  }
+
+  const timeoutPromise = new Promise<SitemapBlog[]>((_, reject) => {
+    setTimeout(() => {
+      reject(new Error("Sitemap database fetch timed out"));
+    }, SITEMAP_DB_TIMEOUT_MS);
+  });
+
+  return Promise.race([
+    (async () => {
+      await dbConnect();
+
+      return (await Blog.find({ published: true })
+        .select("slug updatedAt")
+        .lean()) as SitemapBlog[];
+    })(),
+    timeoutPromise,
+  ]);
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogUrls = sampleBlogs.map((blog) => ({
     url: `${SITE_URL}/blog/${blog.slug}`,
@@ -18,16 +43,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   try {
-    await dbConnect();
-    const blogs = (await Blog.find({ published: true })
-      .select("slug updatedAt")
-      .lean()) as SitemapBlog[];
-    blogUrls = blogs.map((blog) => ({
-      url: `${SITE_URL}/blog/${blog.slug}`,
-      lastModified: blog.updatedAt || new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    }));
+    const blogs = await fetchPublishedBlogs();
+
+    if (blogs.length > 0) {
+      blogUrls = blogs.map((blog) => ({
+        url: `${SITE_URL}/blog/${blog.slug}`,
+        lastModified: blog.updatedAt || new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      }));
+    }
   } catch (error) {
     if (isMongoConfigured()) {
       console.error("Sitemap blog fetch failed:", error);
